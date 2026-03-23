@@ -1,14 +1,21 @@
 // TS Type definition
-export type Status = 'To Do' | 'In Progress' | 'In Review' | 'Done';
-export type Priority = 'Low' | 'Medium' | 'High' | 'Critical';
-export type Assignee = 'Tomal Sen' | 'Taman Manhoj' | 'Mrunal Thakur' | 'Divyanka Gupta' | 'Pav Saxena' | 'NJ Jahan';
+export type TViewMode = 'Kanban' | 'List' | 'Timeline';
+export type TStatus = 'To Do' | 'In Progress' | 'In Review' | 'Done';
+export type TPriority = 'Low' | 'Medium' | 'High' | 'Critical';
+export type TAssignee = 'Tomal Sen' | 'Taman Manhoj' | 'Mrunal Thakur' | 'Divyanka Gupta' | 'Pav Saxena' | 'NJ Jahan';
 
-export interface Task {
+
+export const STATUSES: TStatus[] = ['To Do', 'In Progress', 'In Review', 'Done'];
+export const PRIORITIES: TPriority[] = ['Low', 'Medium', 'High', 'Critical'];
+export const ASSIGNEES: TAssignee[] = ['Tomal Sen', 'Taman Manhoj', 'Mrunal Thakur', 'Divyanka Gupta', 'Pav Saxena', 'NJ Jahan'];
+
+
+export interface ITask {
     id: string;
     title: string;
-    assignee: Assignee;
-    priority: Priority;
-    status: Status;
+    assignee: TAssignee;
+    priority: TPriority;
+    status: TStatus;
     startDate: string | null;
     dueDate: string;
 }

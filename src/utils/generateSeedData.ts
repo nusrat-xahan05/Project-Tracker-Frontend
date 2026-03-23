@@ -1,13 +1,10 @@
-import type { Assignee, Priority, Status, Task } from "../types";
+import { ASSIGNEES, PRIORITIES, STATUSES, type ITask } from "../types";
 import { getRandomDate, getRandomItem } from "./getRandomInfo";
 
 
-const STATUSES: Status[] = ['To Do', 'In Progress', 'In Review', 'Done'];
-const PRIORITIES: Priority[] = ['Low', 'Medium', 'High', 'Critical'];
-const ASSIGNEES: Assignee[] = ['Tomal Sen', 'Taman Manhoj', 'Mrunal Thakur', 'Divyanka Gupta', 'Pav Saxena', 'NJ Jahan'];
 
-export const generateSeedData = (count: number = 500): Task[] => {
-  const tasks: Task[] = [];
+export const generateSeedData = (count: number = 500): ITask[] => {
+  const tasks: ITask[] = [];
 
   for (let i = 1; i <= count; i++) {
     // Randomly select 'STARTDATE' between -15 days for 'past' & +30 days for 'future'
