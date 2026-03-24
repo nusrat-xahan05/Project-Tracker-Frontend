@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useTaskStore } from './store/useTaskDataStore';
 import type { TViewMode } from './types';
+import KanbanBoard from './components/views/KanbanBoard';
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
       <main className="flex-1 overflow-hidden p-6 flex flex-col">
         <div className="bg-white border rounded-xl flex-1 p-4 shadow-sm overflow-hidden flex flex-col">
           <h2 className="text-lg font-semibold mb-4">{activeView} View Active</h2>
+          {activeView === 'Kanban' && <KanbanBoard tasks={tasks} />}
         </div>
       </main>
     </div>
