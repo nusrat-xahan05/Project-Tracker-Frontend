@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useTaskStore } from './store/useTaskDataStore';
 import type { TViewMode } from './types';
 import KanbanBoard from './components/views/KanbanBoard';
+import ListView from './components/views/ListView';
+// import TimelineView from './components/views/TimelineView';
 
 
 function App() {
@@ -42,12 +44,13 @@ function App() {
         </div>
       </header>
 
-
       {/* Main Content Area */}
       <main className="flex-1 overflow-hidden p-6 flex flex-col">
         <div className="bg-white border rounded-xl flex-1 p-4 shadow-sm overflow-hidden flex flex-col">
           <h2 className="text-lg font-semibold mb-4">{activeView} View Active</h2>
           {activeView === 'Kanban' && <KanbanBoard tasks={tasks} />}
+          {activeView === 'List' && <ListView tasks={tasks} />}
+          {/* {activeView === 'Timeline' && <TimelineView tasks={tasks} />} */}
         </div>
       </main>
     </div>
