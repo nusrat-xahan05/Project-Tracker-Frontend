@@ -3,7 +3,6 @@ import { useTaskStore } from './store/useTaskDataStore';
 import type { TViewMode } from './types';
 
 
-
 function App() {
   const { tasks, initializeTasks } = useTaskStore();
   const [activeView, setActiveView] = useState<TViewMode>('Kanban');
