@@ -1,13 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useTaskStore } from './store/useTaskDataStore';
 import type { TViewMode } from './types';
 import KanbanBoard from './components/views/KanbanBoard';
 import ListView from './components/views/ListView';
+import { useUrlFilters } from './hooks/useUrlFilters';
+import FilterBar from './components/layout/FilterBar';
 // import TimelineView from './components/views/TimelineView';
-
 
 function App() {
   const { tasks, initializeTasks } = useTaskStore();
+  const { filters, updateFilters, clearAllFilters, hasActiveFilters } = useUrlFilters();
   const [activeView, setActiveView] = useState<TViewMode>('Kanban');
 
   // Initialize the 500 tasks on first load
@@ -15,10 +17,22 @@ function App() {
     initializeTasks();
   }, [initializeTasks]);
 
+  // Filter the tasks based on URL state
+  const filteredTasks = useMemo(() => {
+    return tasks.filter((task) => {
+      const matchStatus = filters.status.length === 0 || filters.status.includes(task.status);
+      const matchPriority = filters.priority.length === 0 || filters.priority.includes(task.priority);
+      const matchAssignee = filters.assignee.length === 0 || filters.assignee.includes(task.assignee);
+
+      const matchDateFrom = !filters.dateFrom || new Date(task.dueDate) >= new Date(filters.dateFrom);
+      const matchDateTo = !filters.dateTo || new Date(task.dueDate) <= new Date(filters.dateTo);
+
+      return matchStatus && matchPriority && matchAssignee && matchDateFrom && matchDateTo;
+    });
+  }, [tasks, filters]);
 
   // Basic Loading State 
   if (tasks.length === 0) return <div className="p-10 text-center">Loading board...</div>;
-
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900 font-sans flex flex-col">
@@ -27,7 +41,6 @@ function App() {
         <div>
           <h1 className="text-xl font-bold">Project Management Tool</h1>
         </div>
-
 
         {/* View Switcher */}
         <div className="flex bg-gray-100 p-1 rounded-lg">
@@ -44,13 +57,21 @@ function App() {
         </div>
       </header>
 
+      {/* Filter Bar Component */}
+      <FilterBar
+        filters={filters}
+        updateFilters={updateFilters}
+        clearAllFilters={clearAllFilters}
+        hasActiveFilters={hasActiveFilters}
+      />
+
       {/* Main Content Area */}
       <main className="flex-1 overflow-hidden p-6 flex flex-col">
         <div className="bg-white border rounded-xl flex-1 p-4 shadow-sm overflow-hidden flex flex-col">
           <h2 className="text-lg font-semibold mb-4">{activeView} View Active</h2>
-          {activeView === 'Kanban' && <KanbanBoard tasks={tasks} />}
-          {activeView === 'List' && <ListView tasks={tasks} />}
-          {/* {activeView === 'Timeline' && <TimelineView tasks={tasks} />} */}
+          {activeView === 'Kanban' && <KanbanBoard tasks={filteredTasks} />}
+          {activeView === 'List' && <ListView tasks={filteredTasks} />}
+          {/* {activeView === 'Timeline' && <TimelineView tasks={filteredTasks} />} */}
         </div>
       </main>
     </div>
