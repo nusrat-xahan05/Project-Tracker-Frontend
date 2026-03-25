@@ -16,10 +16,10 @@ export default function KanbanColumn({ status, tasks, drag, startDrag }: KanbanC
 
     return (
         <div data-status={status}
-            className={`rounded-xl flex flex-col min-w-75 max-w-112.5 h-full transition-colors border-2 ${isHovered ? 'bg-blue-50/50 border-blue-400 border-dashed' : 'bg-gray-100 border-transparent'}`}>
+            className={`rounded-xl flex flex-col min-w-75 max-w-112.5 h-full transition-colors border-2 ${isHovered ? 'bg-blue-50/50 border-blue-400 border-dashed' : 'bg-red-100 border-transparent'}`}>
             {/* Column Header - Task Status */}
-            <div className="p-3 border-b border-gray-200 flex justify-between items-center bg-gray-100/80 backdrop-blur rounded-t-xl z-10 sticky top-0">
-                <h3 className="font-bold text-gray-700 text-sm">{status}</h3>
+            <div className="p-3 border-b border-red-600 flex justify-between items-center bg-red-500/80 backdrop-blur rounded-t-xl z-10 sticky top-0">
+                <h3 className="font-bold text-gray-200 text-sm">{status}</h3>
                 <span className="bg-gray-200 text-gray-600 text-xs py-0.5 px-2 rounded-full font-medium">
                     {tasks.length}
                 </span>

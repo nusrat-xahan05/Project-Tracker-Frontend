@@ -23,9 +23,9 @@ export default function FilterBar({ filters, updateFilters, clearAllFilters, has
                         <button
                             key={status}
                             onClick={() => toggleArrayFilter('status', status)}
-                            className={`bg-red-50 px-3 py-1 cursor-pointer text-xs rounded-full border ${filters.status.includes(status)
-                                ? 'bg-red-100 border-red-300 text-red-800'
-                                : 'border-red-300 text-gray-600 hover:bg-red-100'
+                            className={`bg-red-50 border-red-300 px-3 py-1 cursor-pointer text-xs rounded-full border ${filters.status.includes(status)
+                                ? 'bg-red-100 text-red-800'
+                                : 'text-gray-600 hover:bg-red-100'
                                 }`}
                         >
                             {status}
@@ -38,7 +38,7 @@ export default function FilterBar({ filters, updateFilters, clearAllFilters, has
             <div className="flex items-center gap-2 border-l border-gray-400 pl-4">
                 <span className="text-sm font-medium text-gray-700">Priority:</span>
                 <select
-                    className="text-sm border rounded p-1"
+                    className="text-sm border border-red-300 rounded p-1"
                     onChange={(e) => updateFilters({ priority: [e.target.value] })}
                     value={filters.priority[0] || ''}>
                     <option value="">All</option>
@@ -53,14 +53,14 @@ export default function FilterBar({ filters, updateFilters, clearAllFilters, has
                     type="date"
                     value={filters.dateFrom}
                     onChange={(e) => updateFilters({ dateFrom: e.target.value })}
-                    className="text-sm border rounded p-1 text-gray-600"
+                    className="text-sm border border-red-300 rounded p-1 text-gray-600"
                 />
                 <span className="text-gray-400">-</span>
                 <input
                     type="date"
                     value={filters.dateTo}
                     onChange={(e) => updateFilters({ dateTo: e.target.value })}
-                    className="text-sm border rounded p-1 text-gray-600"
+                    className="text-sm border border-red-300 rounded p-1 text-gray-600"
                 />
             </div>
 

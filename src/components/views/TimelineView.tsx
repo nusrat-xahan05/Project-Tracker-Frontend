@@ -49,13 +49,13 @@ export default function TimelineView({ tasks }: { tasks: ITask[] }) {
         <div className="flex flex-col h-screen max-h-screen bg-white border border-gray-200 rounded-lg overflow-hidden">
 
             {/* Priority Scale - Table Header*/}
-            <div className="flex items-center gap-4 p-3 bg-gray-50 border-b border-gray-200 text-xs font-medium z-50">
-                <span className="text-gray-500 mr-2 uppercase tracking-wider">Priority Scale:</span>
+            <div className="flex items-center gap-4 p-3 bg-red-100/80 border-b border-gray-200 text-xs font-medium z-50 text-gray-600">
+                <span className="mr-2 uppercase tracking-wider">Priority Scale:</span>
                 <div className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-red-500"></span> Critical</div>
                 <div className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-orange-500"></span> High</div>
                 <div className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-blue-500"></span> Medium</div>
                 <div className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-emerald-500"></span> Low</div>
-                <div className="ml-auto text-gray-400">Total Days: {datesArr.length}</div>
+                <div className="ml-auto">Total Days: {datesArr.length}</div>
             </div>
 
             {/* Main Viewport (Double Axis Scrolling) */}
@@ -63,9 +63,9 @@ export default function TimelineView({ tasks }: { tasks: ITask[] }) {
                 <div style={{ minWidth: `${(datesArr.length * 40) + 224}px` }} className="relative flex flex-col min-h-full">
 
                     {/* Dates Header Row */}
-                    <div className="sticky top-0 z-40 flex bg-white border-b border-gray-200 shadow-sm">
+                    <div className="sticky top-0 z-40 flex bg-red-500/80 border-b border-gray-200 shadow-sm">
                         
-                        <div className="w-48 shrink-0 border-r border-gray-200 p-4 font-bold text-gray-700 bg-gray-50 sticky left-0 z-50">
+                        <div className="w-48 shrink-0 border-r border-red-700 p-4 font-bold text-gray-100 bg-red-500/80 sticky left-0 z-50">
                             Task Details
                         </div>
 
@@ -74,17 +74,17 @@ export default function TimelineView({ tasks }: { tasks: ITask[] }) {
                             {datesArr.map((date, i) => {
                                 const isFirstOfMonth = date.getDate() === 1;
                                 return (
-                                    <div key={i} className="w-10 shrink-0 border-r border-gray-100 text-center py-2 flex flex-col items-center justify-center bg-white">
+                                    <div key={i} className="w-10 shrink-0 border-r border-red-700 text-center py-2 flex flex-col items-center justify-center bg-red-500/80">
                                         {isFirstOfMonth && (
-                                            <span className="absolute -top-1 text-[10px] font-black text-blue-600 uppercase">
+                                            <span className="absolute -top-1 text-[10px] font-black text-white uppercase">
                                                 {date.toLocaleDateString('en-US', { month: 'short' })}
                                             </span>
                                         )}
                                         
-                                        <span className="text-[9px] text-gray-500 uppercase font-semibold">
+                                        <span className="text-[9px] text-gray-300 uppercase font-semibold">
                                             {date.toLocaleDateString('en-US', { weekday: 'short' })}
                                         </span>
-                                        <span className="text-xs font-bold text-gray-700">{date.getDate()}</span>
+                                        <span className="text-xs font-bold text-gray-200">{date.getDate()}</span>
                                     </div>
                                 );
                             })}

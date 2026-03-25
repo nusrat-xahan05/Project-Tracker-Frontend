@@ -41,7 +41,7 @@ export default function ListView({ tasks }: { tasks: ITask[] }) {
 
     const renderSortIcon = (key: TsortField) => {
         if (sortKey !== key) return <span className="text-gray-300 ml-1 text-xs">↕</span>;
-        return sortDir === 'asc' ? <span className="text-blue-600 ml-1 font-bold">↑</span> : <span className="text-blue-600 ml-1 font-bold">↓</span>;
+        return sortDir === 'asc' ? <span className="text-gray-100 ml-1 font-bold">↑</span> : <span className="text-gray-800 ml-1 font-bold">↓</span>;
     };
 
     // Virtual Scrolling Logic
@@ -70,17 +70,17 @@ export default function ListView({ tasks }: { tasks: ITask[] }) {
             <div className='flex-1 flex flex-col overflow-x-auto'>
                 <div className='min-w-200 flex flex-col h-full'>
                     {/* Table Header */}
-                    <div className="grid grid-cols-12 gap-4 p-3 bg-gray-50 border-b border-gray-200 text-sm font-semibold text-gray-600 z-20 shadow-sm shrink-0">
-                        <div className="col-span-2 cursor-pointer hover:text-blue-600 flex items-center select-none" onClick={() => handleSort('title')}>
+                    <div className="grid grid-cols-12 gap-4 p-3 bg-red-500/80 border-b border-gray-200 text-sm font-semibold text-gray-100 z-20 shadow-sm shrink-0">
+                        <div className="col-span-2 cursor-pointer hover:text-gray-800 flex items-center select-none" onClick={() => handleSort('title')}>
                             Task Title {renderSortIcon('title')}
                         </div>
                         <div className="col-span-2">Assignee</div>
-                        <div className="col-span-2 cursor-pointer hover:text-blue-600 flex items-center select-none" onClick={() => handleSort('priority')}>
+                        <div className="col-span-2 cursor-pointer hover:text-gray-800 flex items-center select-none" onClick={() => handleSort('priority')}>
                             Priority {renderSortIcon('priority')}
                         </div>
                         <div className="col-span-2">Status</div>
                         <div className="col-span-2">Start Date</div>
-                        <div className="col-span-2 cursor-pointer hover:text-blue-600 flex items-center select-none" onClick={() => handleSort('dueDate')}>
+                        <div className="col-span-2 cursor-pointer hover:text-gray-800 flex items-center select-none" onClick={() => handleSort('dueDate')}>
                             Due Date {renderSortIcon('dueDate')}
                         </div>
                     </div>
@@ -89,7 +89,7 @@ export default function ListView({ tasks }: { tasks: ITask[] }) {
                     <div
                         ref={containerRef}
                         onScroll={handleScroll}
-                        className="flex-1 overflow-y-auto relative bg-white">
+                        className="flex-1 overflow-y-auto relative bg-red-100/90">
                         <div style={{ height: `${totalHeight}px` }} className="w-full relative">
                             <div style={{ transform: `translateY(${offsetY}px)`, position: 'absolute', top: 0, left: 0, right: 0 }}>
                                 {visibleTasks.map((task) => {
