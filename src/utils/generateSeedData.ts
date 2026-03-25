@@ -1,4 +1,4 @@
-import { ASSIGNEES, PRIORITIES, STATUSES, type ITask } from "../types";
+import { DATA_ASSIGNEES, PRIORITIES, STATUSES, type ITask } from "../types";
 import { getRandomDate, getRandomItem } from "./getRandomInfo";
 
 
@@ -21,7 +21,7 @@ export const generateSeedData = (count: number = 500): ITask[] => {
     tasks.push({
       id: `task-${i.toString().padStart(4, '0')}`,
       title: `Project Task ${i}`,
-      assignee: getRandomItem(ASSIGNEES),
+      assignee: getRandomItem(DATA_ASSIGNEES),
       priority: getRandomItem(PRIORITIES),
       status: getRandomItem(STATUSES),
       startDate: isMissingStartDate ? null : getRandomDate(getstartDate),

@@ -16,7 +16,7 @@ export type TAssignee = (typeof ASSIGNEES)[number];
 
 export const STATUSES: TStatus[] = ['To Do', 'In Progress', 'In Review', 'Done'];
 export const PRIORITIES: TPriority[] = ['Low', 'Medium', 'High', 'Critical'];
-// export const ASSIGNEES: TAssignee[] = ['Tomal Sen', 'Taman Manhoj', 'Mrunal Thakur', 'Divyanka Gupta', 'Pav Saxena', 'NJ Jahan'];
+export const DATA_ASSIGNEES: TAssignee[] = ['Tomal Sen', 'Taman Manhoj', 'Mrunal Thakur', 'Divyanka Gupta', 'Pav Saxena', 'NJ Jahan'];
 
 
 export interface ITask {
