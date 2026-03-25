@@ -1,73 +1,92 @@
-# React + TypeScript + Vite
+# 🚀 Velozity Project Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A high-performance, real-time Project Tracker Dashboard built with **React, TypeScript, and Tailwind CSS**. This application manages a dataset of 500+ tasks across Kanban, List, and Timeline views while maintaining a **100/100 Lighthouse Performance Score**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠️ Setup Instructions
 
-## React Compiler
+Follow these steps to run the project locally:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1.  **Clone the Repository:**
 
-## Expanding the ESLint configuration
+    ```bash
+    git clone [https://github.com/nusrat-xahan05/Project-Tracker-Frontend.git]
+    cd velozity-project-tracker
+    ```
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+2.  **Install Dependencies:**
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+    ```bash
+    npm install
+    ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+3.  **Run Development Server:**
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+    ```bash
+    npm run dev
+    ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+4.  **Build for Production:**
+    ```bash
+    npm run build
+    npm run preview
+    ```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🏗️ Technical Architecture & Decisions
+
+### 1. State Management (Zustand)
+
+I chose **Zustand** as the primary state management library for this project.
+
+- **Why:** Unlike Redux, Zustand offers a boilerplate-free approach that is highly performant for frequent updates (like drag-and-drop or real-time simulations).
+- **Synchronization:** It serves as a "Single Source of Truth," ensuring that when a task's status is updated in the Kanban view, the changes are instantly reflected in the List and Timeline views without unnecessary prop-drilling.
+
+### 2. Virtual Scrolling Implementation
+
+To handle the requirement of **500+ tasks** without degrading the browser's main thread, I implemented a **Custom Virtual Scroller** in the List and Timeline views.
+
+- **Mechanism:** Instead of rendering 500+ DOM nodes, the system calculates the visible "window" based on the container's scroll position. Only ~25 rows are rendered at any given time.
+- **Efficiency:** By using a dummy "spacer" div to maintain the scrollbar height and `translateY` to position the visible rows, I reduced the DOM node count by **95%**, directly resulting in the 100/100 Lighthouse score.
+
+### 3. Custom Drag-and-Drop (No Libraries)
+
+As per the assessment constraints, I built a drag-and-drop system from scratch using the **Pointer Events API**.
+
+- **Approach:** I utilized `onPointerDown`, `onPointerMove`, and `onPointerUp` to manage the lifecycle of a drag. This ensures native support for both **Mouse and Touch devices**.
+- **UX Features:**
+  - **Collision Detection:** Used `elementFromPoint` to identify valid drop zones (columns) even while the "ghost" card is being dragged.
+  - **Layout Stability:** A dashed placeholder remains in the original position to prevent layout shifts.
+  - **Snap-Back:** If a card is dropped in an invalid area, it uses a CSS transition to smoothly animate back to its starting position.
+
+### 4. Real-time Simulation
+
+To simulate a collaborative environment:
+
+- **Live Indicators:** A custom hook updates the "Live Collaborators" in the header every 4 seconds.
+- **Avatar Stacking:** When multiple users view the same task, avatars stack with a `+N` overflow indicator to keep the UI clean.
+
+---
+
+## 🧰 Tech Stack
+
+- **Framework:** React 19 (Vite)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **State:** Zustand
+- **Deployment:** Vercel
+
+---
+
+## 📊 Performance Audit
+
+The application was audited using Google Lighthouse in a production environment (Vercel) via Chrome Incognito mode.
+
+![Lighthouse Performance Report](./public/lighthouse-report.png)
+
+- **Performance:** 100
+- **Accessibility:** 100
+- **Best Practices:** 100
+- **SEO:** 100
