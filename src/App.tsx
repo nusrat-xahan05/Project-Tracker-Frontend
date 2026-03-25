@@ -5,7 +5,7 @@ import KanbanBoard from './components/views/KanbanBoard';
 import ListView from './components/views/ListView';
 import { useUrlFilters } from './hooks/useUrlFilters';
 import FilterBar from './components/layout/FilterBar';
-// import TimelineView from './components/views/TimelineView';
+import TimelineView from './components/views/TimelineView';
 
 function App() {
   const { tasks, initializeTasks } = useTaskStore();
@@ -37,7 +37,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900 font-sans flex flex-col">
       {/* Top Header */}
-      <header className="bg-white border-b px-6 py-4 flex justify-between items-center sticky top-0 z-20">
+      <header className="bg-white border-b px-6 py-4 flex justify-between items-center sticky top-0 z-60">
         <div>
           <h1 className="text-xl font-bold">Project Management Tool</h1>
         </div>
@@ -71,7 +71,7 @@ function App() {
           <h2 className="text-lg font-semibold mb-4">{activeView} View Active</h2>
           {activeView === 'Kanban' && <KanbanBoard tasks={filteredTasks} />}
           {activeView === 'List' && <ListView tasks={filteredTasks} />}
-          {/* {activeView === 'Timeline' && <TimelineView tasks={filteredTasks} />} */}
+          {activeView === 'Timeline' && <TimelineView tasks={filteredTasks} />}
         </div>
       </main>
     </div>
