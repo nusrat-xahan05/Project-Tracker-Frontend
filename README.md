@@ -1,6 +1,17 @@
 # 🚀 Velozity Project Tracker
 
-A high-performance, real-time Project Tracker Dashboard built with **React, TypeScript, and Tailwind CSS**. This application manages a dataset of 500+ tasks across Kanban, List, and Timeline views while maintaining a **100/100 Lighthouse Performance Score**.
+A high-performance, engineering-centric Project Management Dashboard built to demonstrate advanced React patterns, custom DOM manipulation, and performance optimization. This application manages a dynamic dataset of 500+ tasks across three distinct synchronized views while maintaining a perfect **98/100 Lighthouse Performance Score**.
+
+---
+
+## 🚀 Key Technical Achievements:
+Engineered from Scratch: Built without any UI frameworks (Shadcn/MUI) or drag-and-drop libraries (dnd-kit/react-beautiful-dnd).
+
+Performance at Scale: Implemented custom mathematical virtualization to maintain 60fps scrolling with 500+ active task nodes.
+
+Universal Input Support: Developed a unified Pointer Events system that provides a seamless drag-and-drop experience across both desktop (mouse) and mobile (touch) devices.
+
+Real-Time Simulation: Integrated a "Pseudo-WebSocket" simulation hook that mimics a live collaborative environment with dynamic user presence and action indicators.
 
 ---
 
@@ -41,7 +52,7 @@ Follow these steps to run the project locally:
 
 I chose **Zustand** as the primary state management library for this project.
 
-- **Why:** Unlike Redux, Zustand offers a boilerplate-free approach that is highly performant for frequent updates (like drag-and-drop or real-time simulations).
+- **Why:** Performance: Unlike React Context, Zustand allows for transient state updates, preventing unnecessary re-renders of the entire board when a single task status changes.
 - **Synchronization:** It serves as a "Single Source of Truth," ensuring that when a task's status is updated in the Kanban view, the changes are instantly reflected in the List and Timeline views without unnecessary prop-drilling.
 
 ### 2. Virtual Scrolling Implementation
@@ -86,7 +97,7 @@ The application was audited using Google Lighthouse in a production environment 
 
 ![Lighthouse Performance Report](./public/lighthouse-report.png)
 
-- **Performance:** 100
-- **Accessibility:** 100
-- **Best Practices:** 100
-- **SEO:** 100
+- **Performance:** 98
+- **Accessibility:** 73
+- **Best Practices:** 96
+- **SEO:** 91
