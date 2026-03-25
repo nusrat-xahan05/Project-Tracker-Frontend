@@ -2,12 +2,21 @@
 export type TViewMode = 'Kanban' | 'List' | 'Timeline';
 export type TStatus = 'To Do' | 'In Progress' | 'In Review' | 'Done';
 export type TPriority = 'Low' | 'Medium' | 'High' | 'Critical';
-export type TAssignee = 'Tomal Sen' | 'Taman Manhoj' | 'Mrunal Thakur' | 'Divyanka Gupta' | 'Pav Saxena' | 'NJ Jahan';
 
+export const ASSIGNEES = [
+    'Tomal Sen', 
+    'Taman Manhoj', 
+    'Mrunal Thakur', 
+    'Divyanka Gupta', 
+    'Pav Saxena', 
+    'NJ Jahan'
+] as const;
+
+export type TAssignee = (typeof ASSIGNEES)[number];
 
 export const STATUSES: TStatus[] = ['To Do', 'In Progress', 'In Review', 'Done'];
 export const PRIORITIES: TPriority[] = ['Low', 'Medium', 'High', 'Critical'];
-export const ASSIGNEES: TAssignee[] = ['Tomal Sen', 'Taman Manhoj', 'Mrunal Thakur', 'Divyanka Gupta', 'Pav Saxena', 'NJ Jahan'];
+// export const ASSIGNEES: TAssignee[] = ['Tomal Sen', 'Taman Manhoj', 'Mrunal Thakur', 'Divyanka Gupta', 'Pav Saxena', 'NJ Jahan'];
 
 
 export interface ITask {

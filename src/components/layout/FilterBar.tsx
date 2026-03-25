@@ -13,7 +13,7 @@ export default function FilterBar({ filters, updateFilters, clearAllFilters, has
     };
 
     return (
-        <div className="bg-white border-b px-6 py-3 flex flex-wrap gap-4 items-center z-10">
+        <div className="border-b-2 border-red-500 px-6 py-5 flex flex-wrap gap-4 items-center z-10">
 
             {/* Status Filter */}
             <div className="flex items-center gap-2">
@@ -23,9 +23,9 @@ export default function FilterBar({ filters, updateFilters, clearAllFilters, has
                         <button
                             key={status}
                             onClick={() => toggleArrayFilter('status', status)}
-                            className={`px-3 py-1 text-xs rounded-full border ${filters.status.includes(status)
-                                ? 'bg-blue-100 border-blue-300 text-blue-800'
-                                : 'bg-white border-gray-300 text-gray-600 hover:bg-gray-50'
+                            className={`bg-red-50 px-3 py-1 cursor-pointer text-xs rounded-full border ${filters.status.includes(status)
+                                ? 'bg-red-100 border-red-300 text-red-800'
+                                : 'border-red-300 text-gray-600 hover:bg-red-100'
                                 }`}
                         >
                             {status}
@@ -35,7 +35,7 @@ export default function FilterBar({ filters, updateFilters, clearAllFilters, has
             </div>
 
             {/* Priority Filter */}
-            <div className="flex items-center gap-2 border-l pl-4">
+            <div className="flex items-center gap-2 border-l border-gray-400 pl-4">
                 <span className="text-sm font-medium text-gray-700">Priority:</span>
                 <select
                     className="text-sm border rounded p-1"
@@ -47,7 +47,7 @@ export default function FilterBar({ filters, updateFilters, clearAllFilters, has
             </div>
 
             {/* Date Range Filters */}
-            <div className="flex items-center gap-2 border-l pl-4">
+            <div className="flex items-center gap-2 border-l border-gray-400 pl-4">
                 <span className="text-sm font-medium text-gray-700">Due:</span>
                 <input
                     type="date"
