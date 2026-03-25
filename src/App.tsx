@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useTaskStore } from './store/useTaskDataStore';
 import type { TViewMode } from './types';
-import KanbanBoard from './components/views/KanbanBoard';
 import ListView from './components/views/ListView';
 import { useUrlFilters } from './hooks/useUrlFilters';
 import FilterBar from './components/layout/FilterBar';
 import TimelineView from './components/views/TimelineView';
+import KanbanBoard from './components/views/KanbanBoard';
+import logo from './assets/velozity-logo.png';
 
 function App() {
   const { tasks, initializeTasks } = useTaskStore();
@@ -39,11 +40,15 @@ function App() {
       {/* Top Header */}
       <header className="bg-white border-b px-6 py-4 flex justify-between items-center sticky top-0 z-60">
         <div>
+          <img src={logo} alt="" />
+        </div>
+
+        <div className='pt-5'>
           <h1 className="text-xl font-bold">Project Management Tool</h1>
         </div>
 
         {/* View Switcher */}
-        <div className="flex bg-gray-100 p-1 rounded-lg">
+        <div className="flex bg-gray-100 p-1 rounded-lg mt-5">
           {['Kanban', 'List', 'Timeline'].map((view) => (
             <button
               key={view}
@@ -69,7 +74,13 @@ function App() {
       <main className="flex-1 overflow-hidden p-6 flex flex-col">
         <div className="bg-white border rounded-xl flex-1 p-4 shadow-sm overflow-hidden flex flex-col">
           <h2 className="text-lg font-semibold mb-4">{activeView} View Active</h2>
-          {activeView === 'Kanban' && <KanbanBoard tasks={filteredTasks} />}
+          {/* {activeView === 'Kanban' && <KanbanBoard tasks={filteredTasks} />} */}
+          {activeView === 'Kanban' && (
+            <KanbanBoard 
+                tasks={filteredTasks} 
+                // onUpdateStatus={updateTaskStatus} 
+            />
+          )}
           {activeView === 'List' && <ListView tasks={filteredTasks} />}
           {activeView === 'Timeline' && <TimelineView tasks={filteredTasks} />}
         </div>
